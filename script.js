@@ -79,12 +79,12 @@ function doSearch() {
   const inner = document.getElementById('result-inner');
 
   if (selectedDiseases.size === 0 && selectedSymptoms.size === 0) {
-    inner.innerHTML = `<div style="color:#b85e00;font-weight:500">⚠️ กรุณาเลือกอาการ หรือโรคประจำตัวก่อนค้นหา</div>`;
+    inner.innerHTML = `<div class="search-warning">⚠️ กรุณาเลือกอาการ หรือโรคประจำตัวก่อนค้นหา</div>`;
     panel.style.display = 'block';
     return;
   }
 
-  let msg = '<div style="font-family:\'Mitr\',sans-serif;font-size:1rem;font-weight:600;color:#7a4e00;margin-bottom:0.5rem">📋 คำแนะนำสำหรับคุณ</div><ul style="list-style:none;display:flex;flex-direction:column;gap:0.4rem">';
+  let msg = '<div class="advice-header">📋 คำแนะนำสำหรับคุณ</div><ul class="advice-list">';
 
   const adviceMap = {
     'เบาหวาน': '🩸 เบาหวาน — หลีกเลี่ยงอาหาร GI สูง เน้นผักใยสูง โปรตีนลีน และคาร์บซับซ้อน',
@@ -108,12 +108,12 @@ function doSearch() {
 
   selectedDiseases.forEach(d => {
     if (adviceMap[d]) {
-      msg += `<li style="background:rgba(245,130,31,0.1);border-left:3px solid var(--orange);padding:0.5rem 0.8rem;border-radius:0 8px 8px 0;font-size:0.88rem">${adviceMap[d]}</li>`;
+      msg += `<li class="advice-item disease-advice">${adviceMap[d]}</li>`;
     }
   });
   selectedSymptoms.forEach(s => {
     if (symptomAdvice[s]) {
-      msg += `<li style="background:rgba(58,170,110,0.08);border-left:3px solid var(--green);padding:0.5rem 0.8rem;border-radius:0 8px 8px 0;font-size:0.88rem">${symptomAdvice[s]}</li>`;
+      msg += `<li class="advice-item symptom-advice">${symptomAdvice[s]}</li>`;
     }
   });
 
@@ -177,4 +177,27 @@ const obs = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
 }, { threshold: 0.1 });
 document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+
+// Dark Mode Toggle Logic
+const themeToggle = document.getElementById('theme-toggle');
+
+// Default to light mode unless explicitly saved as dark in localStorage
+if (localStorage.getItem('theme') === 'dark') {
+  document.body.classList.add('dark-mode');
+  themeToggle.checked = true;
+} else {
+  document.body.classList.remove('dark-mode');
+  themeToggle.checked = false;
+}
+
+themeToggle.addEventListener('change', () => {
+  if (themeToggle.checked) {
+    document.body.classList.add('dark-mode');
+    localStorage.setItem('theme', 'dark');
+  } else {
+    document.body.classList.remove('dark-mode');
+    localStorage.setItem('theme', 'light');
+  }
+});
+
 
