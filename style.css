@@ -176,11 +176,43 @@ nav {
   gap: 0.4rem;
 }
 
+.col-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.col-title-row .col-title {
+  margin-bottom: 0;
+}
+
+.clear-btn {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--gray);
+  background: var(--gray-light);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 0.2rem 0.65rem;
+  cursor: pointer;
+  transition: all 0.18s;
+  font-family: 'Sarabun', sans-serif;
+  white-space: nowrap;
+}
+
+.clear-btn:hover {
+  background: #ffecec;
+  border-color: #e84444;
+  color: #c0392b;
+}
+
 .symptom-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 0.7rem;
 }
+
 
 .symptom-btn {
   display: flex;

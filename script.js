@@ -37,6 +37,16 @@ function toggleSymptom(btn) {
   }
 }
 
+function clearSymptoms() {
+  selectedSymptoms.clear();
+  document.querySelectorAll('.symptom-btn').forEach(btn => btn.classList.remove('active'));
+}
+
+function clearDiseases() {
+  selectedDiseases.clear();
+  syncDiseaseTags();
+}
+
 function toggleDisease(d) {
   if (d === 'ไม่มีโรค') {
     if (selectedDiseases.has('ไม่มีโรค')) {

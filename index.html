@@ -45,7 +45,10 @@
 
       <!-- LEFT: Symptoms -->
       <div>
-        <div class="col-title">🤒 มีอาการ...</div>
+        <div class="col-title-row">
+          <div class="col-title">🤒 มีอาการ...</div>
+          <button class="clear-btn" onclick="clearSymptoms()" title="ล้างการเลือกทั้งหมด">✕ ล้าง</button>
+        </div>
         <div class="symptom-grid">
           <button class="symptom-btn" data-sym="ปวดหัว" onclick="toggleSymptom(this)">
             <span class="s-icon">🤕</span><span>ปวดหัว</span>
@@ -77,7 +80,10 @@
 
       <!-- RIGHT: Disease -->
       <div class="disease-col">
-        <div class="col-title">🏥 มีโรคประจำตัว...</div>
+        <div class="col-title-row">
+          <div class="col-title">🏥 มีโรคประจำตัว...</div>
+          <button class="clear-btn" onclick="clearDiseases()" title="ล้างการเลือกทั้งหมด">✕ ล้าง</button>
+        </div>
 
         <div class="disease-tags" id="disease-tags">
           <div class="d-tag" onclick="toggleDiseaseTag(this)" data-d="เบาหวาน">เบาหวาน</div>
@@ -91,7 +97,7 @@
         </div>
 
         <button class="search-btn" onclick="doSearch()">
-          🔍 เริ่มค้นหาอาหารที่เหมาะสม
+          🔍 เริ่มค้นหาอาหาร
         </button>
       </div>
 
