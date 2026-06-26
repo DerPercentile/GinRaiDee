@@ -165,6 +165,7 @@ function renderFoods(meal) {
           <div class="ntr"><span class="nval">${f.p}g</span>โปรตีน</div>
           <div class="ntr"><span class="nval">${f.c}g</span>คาร์บ</div>
           <div class="ntr"><span class="nval">${f.f}g</span>ไขมัน</div>
+          <div class="ntr"><span class="nval">${f.sugar}g</span>น้ำตาล</div>
         </div>
       </div>
     </div>`;
