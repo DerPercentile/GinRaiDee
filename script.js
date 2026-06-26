@@ -25,6 +25,9 @@ async function loadFoods() {
 }
 
 loadFoods();
+// Init slider after DOM is ready
+window.addEventListener('load', initTabSlider);
+
 
 function toggleSymptom(btn) {
   const s = btn.dataset.sym;
@@ -134,12 +137,38 @@ function doSearch() {
   document.getElementById('daily').scrollIntoView({ behavior: 'smooth' });
 }
 
+function moveTabSlider(btn) {
+  const slider = document.getElementById('tab-slider');
+  const tabs = document.getElementById('meal-tabs');
+  if (!slider || !tabs) return;
+  const tabsRect = tabs.getBoundingClientRect();
+  const btnRect = btn.getBoundingClientRect();
+  slider.style.width = btnRect.width + 'px';
+  slider.style.left = (btnRect.left - tabsRect.left) + 'px';
+  slider.style.height = btnRect.height + 'px';
+  slider.style.top = (btnRect.top - tabsRect.top) + 'px';
+}
+
+function initTabSlider() {
+  const activeTab = document.querySelector('.meal-tab.active');
+  if (activeTab) {
+    const slider = document.getElementById('tab-slider');
+    if (slider) slider.style.transition = 'none';
+    moveTabSlider(activeTab);
+    requestAnimationFrame(() => {
+      if (slider) slider.style.transition = '';
+    });
+  }
+}
+
 function switchMeal(meal, btn) {
   activeMeal = meal;
   document.querySelectorAll('.meal-tab').forEach(t => t.classList.remove('active'));
   btn.classList.add('active');
+  moveTabSlider(btn);
   renderFoods(meal);
 }
+
 
 const tagColors = { 'GI ต่ำ':'green','โปรตีนสูง':'blue','ไขมันต่ำ':'green','ย่อยง่าย':'green','โซเดียมต่ำ':'blue','วิตามินสูง':'green','ใยอาหารสูง':'green','โอเมก้า-3':'blue','คาร์บต่ำ':'orange','เบตาแคโรทีน':'orange','โปรตีนพืช':'green','โปรไบโอติก':'blue','พลังงานเร็ว':'orange','ไขมันดี':'green','สุขภาพหัวใจ':'red','คาร์บสูง':'orange' };
 
